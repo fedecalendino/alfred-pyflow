@@ -1,9 +1,29 @@
 [tool.poetry]
 name = "alfred-python-workflow"
-version = "0.1.0"
 description = "Minimal library for the development of Alfred Workflows."
-authors = ["Fede Calendino <fede@calendino.com>"]
+documentation = "https://github.com/fedecalendino/alfred-python-workflow/blob/main/README.md"
+homepage = "https://github.com/fedecalendino/alfred-python-workflow"
 license = "MIT"
+readme = "README.md"
+version = "0.1.0"
+
+authors = [
+  "Fede Calendino <fede@calendino.com>",
+]
+classifiers = [
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+]
+keywords = [
+  "alfred",
+  "workflow",
+]
+packages = [
+  { include = "pyflow" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"

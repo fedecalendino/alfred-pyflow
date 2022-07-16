@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "alfred-python-workflow"
+version = "0.1.0"
+description = "Minimal library for the development of Alfred Workflows."
+authors = ["Fede Calendino <fede@calendino.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+black = "^22.6.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

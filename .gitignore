@@ -1,0 +1,15 @@
+*.py[cod]
+
+.idea
+
+
+build/
+dist/
+*.egg-info/
+*.DS_Store
+
+.venv/
+venv/
+
+htmlcov/
+.coverage

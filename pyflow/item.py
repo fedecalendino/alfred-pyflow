@@ -33,13 +33,14 @@ class Item:
         self.uid: str = uid
         self.type: str = type
 
-        self._icon_path: str = None
-        self._icon_type: str = None
+        self._icon: dict = {}
         self._mods: dict = {}
 
     def set_icon_file(self, path: str):
-        self._icon_path = path
-        self._icon_type = None
+        self._icon = {
+            "path": path,
+            "type": None,
+        }
 
         return self
 
@@ -66,10 +67,7 @@ class Item:
         return {
             "arg": self.arg,
             "autocomplete": self.autocomplete,
-            "icon": {
-                "path": self._icon_path,
-                "type": self._icon_type,
-            },
+            "icon": self._icon,
             "match": self.match,
             "mods": self._mods,
             "quicklookurl": self.quicklookurl,

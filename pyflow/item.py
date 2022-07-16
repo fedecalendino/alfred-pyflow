@@ -7,7 +7,6 @@ if typing.TYPE_CHECKING:  # pragma: no cover
 class Item:
     def __init__(
         self,
-        workflow: "Workflow",
         title: str = "",
         subtitle: str = "",
         valid: bool = True,
@@ -20,7 +19,6 @@ class Item:
         uid: str = None,
         type: str = "default",
     ):
-        self.workflow: "Workflow" = workflow
         self.title: str = title
         self.subtitle: str = subtitle
         self.valid: bool = valid
@@ -32,6 +30,8 @@ class Item:
         self.quicklookurl: str = quicklookurl
         self.uid: str = uid
         self.type: str = type
+
+        self.workflow: "Workflow" = None
 
         self._icon: dict = {}
         self._mods: dict = {}

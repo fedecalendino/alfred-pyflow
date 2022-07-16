@@ -52,21 +52,27 @@ class Workflow:
     def workflowdir(self) -> str:
         return os.getenv("PWD")
 
+    def new_item(self, **kwargs) -> Item:
+        return self.add_item(Item(**kwargs))
+
+    def add_item(self, item: Item) -> Item:
+        item.workflow = self
+        self._items.append(item)
+        return item
+
     def run(self, func):
         try:
             func(self)
         except Exception as e:
             self.logger.exception(e)
             self.add_item(
-                title=f"Error while running workflow '{self.name}'",
-                subtitle=str(e),
-                icon=Icon.ALERT_STOP,
+                Item(
+                    title=f"Error while running workflow '{self.name}'",
+                    subtitle=str(e),
+                ).set_icon_file(
+                    path=Icon.ALERT_STOP,
+                )
             )
-
-    def add_item(self, **kwargs) -> Item:
-        item: Item = Item(self, **kwargs)
-        self._items.append(item)
-        return item
 
     def send_feedback(self):
         json.dump(self.serialized, sys.stdout)

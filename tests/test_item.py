@@ -11,7 +11,7 @@ class TestItem(unittest.TestCase):
     def test_set_icon_file(self):
         wf: Workflow = Workflow()
 
-        item: Item = wf.add_item(title="title")
+        item: Item = wf.new_item(title="title")
         item.set_icon_file(path="./icon.png")
 
         self.assertEqual(item.serialized["icon"]["path"], "./icon.png")

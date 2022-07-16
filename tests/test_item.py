@@ -1,13 +1,20 @@
 import os
 import unittest
-from unittest import mock
+from unittest.mock import patch
 
-from pyflow.workflow import Workflow
 from pyflow.item import Item
+from pyflow.workflow import Workflow
+
+ENVIRONMENT = {
+    "alfred_debug": "1",
+    "alfred_workflow_bundleid": "com.bundle.name",
+    "alfred_workflow_name": "name",
+    "alfred_workflow_version": "0.0.0",
+}
 
 
+@patch.dict(os.environ, ENVIRONMENT, clear=True)
 class TestItem(unittest.TestCase):
-    @mock.patch.dict(os.environ, {"alfred_workflow_name": "mock"}, clear=True)
     def test_set_icon_file(self):
         wf: Workflow = Workflow()
 

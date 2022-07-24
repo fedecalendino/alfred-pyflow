@@ -8,6 +8,7 @@ from pyflow.workflow import Workflow
 ENVIRONMENT = {
     "alfred_debug": "1",
     "alfred_workflow_bundleid": "com.bundle.name",
+    "alfred_workflow_cache": "/tmp",
     "alfred_workflow_name": "name",
     "alfred_workflow_version": "0.0.0",
 }

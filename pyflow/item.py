@@ -3,7 +3,7 @@ import typing
 from .icon import Icon
 
 if typing.TYPE_CHECKING:  # pragma: no cover
-    from .workflow import Workflow
+    from .cache import Cache
 
 
 class Item:
@@ -33,12 +33,17 @@ class Item:
         self.uid: str = uid
         self.type: str = type
 
-        self.workflow: "Workflow" = None
+        self.cache: "Cache" = None
 
         self._icon: dict = {}
         self._mods: dict = {}
 
-    def set_icon_file(self, path: str):
+    def set_icon_builtin(self, icon: Icon) -> "Icon":
+        return self.set_icon_file(
+            path=str(icon),
+        )
+
+    def set_icon_file(self, path: str) -> "Icon":
         self._icon = {
             "path": path,
             "type": None,
@@ -46,10 +51,17 @@ class Item:
 
         return self
 
-    def set_icon_builtin(self, icon: Icon):
-        return self.set_icon_file(str(icon))
+    def set_icon_url(self, url: str, filename: str = None) -> "Icon":
+        return self.set_icon_file(
+            path=self.cache.download_image(
+                url=url,
+                filename=filename,
+            ),
+        )
 
-    def set_alt_mod(self, arg: str = None, subtitle: str = None, valid: bool = True):
+    def set_alt_mod(
+        self, arg: str = None, subtitle: str = None, valid: bool = True
+    ) -> "Icon":
         self._mods["alt"] = {
             "arg": arg,
             "subtitle": subtitle,
@@ -58,7 +70,9 @@ class Item:
 
         return self
 
-    def set_cmd_mod(self, arg: str = None, subtitle: str = None, valid: bool = True):
+    def set_cmd_mod(
+        self, arg: str = None, subtitle: str = None, valid: bool = True
+    ) -> "Icon":
         self._mods["cmd"] = {
             "arg": arg,
             "subtitle": subtitle,

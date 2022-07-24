@@ -67,10 +67,10 @@ class Workflow:
             self.logger.exception(e)
             self.add_item(
                 Item(
-                    title=f"Error while running workflow '{self.name}:{self.version}'",
+                    title=f"Error while running workflow '{self.name}:v{self.version}'",
                     subtitle=str(e),
-                ).set_icon_file(
-                    path=Icon.ALERT_STOP,
+                ).set_icon_builtin(
+                    icon=Icon.ALERT_STOP,
                 )
             )
 

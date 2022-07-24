@@ -2,6 +2,7 @@ import os
 import unittest
 from unittest.mock import patch
 
+from pyflow.icon import Icon
 from pyflow.item import Item
 from pyflow.workflow import Workflow
 
@@ -23,3 +24,13 @@ class TestItem(unittest.TestCase):
 
         self.assertEqual(item.serialized["icon"]["path"], "./icon.png")
         self.assertIsNone(item.serialized["icon"]["type"])
+
+    def test_error(self):
+        wf: Workflow = Workflow()
+        wf.run(lambda _: 1 / 0)
+
+        item: dict = wf.serialized["items"][0]
+
+        self.assertEqual(item["title"], "Error while running workflow 'name:v0.0.0'")
+        self.assertEqual(item["subtitle"], "division by zero")
+        self.assertEqual(item["icon"]["path"], str(Icon.ALERT_STOP))

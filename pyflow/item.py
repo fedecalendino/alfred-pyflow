@@ -1,5 +1,7 @@
 import typing
 
+from .icon import Icon
+
 if typing.TYPE_CHECKING:  # pragma: no cover
     from .workflow import Workflow
 
@@ -43,6 +45,9 @@ class Item:
         }
 
         return self
+
+    def set_icon_builtin(self, icon: Icon):
+        return self.set_icon_file(str(icon))
 
     def set_alt_mod(self, arg: str = None, subtitle: str = None, valid: bool = True):
         self._mods["alt"] = {

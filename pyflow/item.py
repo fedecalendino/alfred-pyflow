@@ -1,4 +1,5 @@
 import typing
+from uuid import uuid4
 
 from .icon import Icon
 
@@ -30,7 +31,7 @@ class Item:
         self.largetype: str = largetype
         self.match: str = match
         self.quicklookurl: str = quicklookurl
-        self.uid: str = uid
+        self.uid: str = uid or str(uuid4())
         self.type: str = type
 
         self.cache: "Cache" = None

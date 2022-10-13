@@ -74,13 +74,11 @@ class Workflow:
             func(self)
         except Exception as e:
             self.logger.exception(e)
-            self.add_item(
-                Item(
-                    title=f"Error while running workflow '{self.name}:v{self.version}'",
-                    subtitle=str(e),
-                ).set_icon_builtin(
-                    icon=Icon.ALERT_STOP,
-                )
+            self.new_item(
+                title=str(e),
+                subtitle=f"Error while running workflow '{self.name}:v{self.version}'",
+            ).set_icon_builtin(
+                icon=Icon.ALERT_STOP,
             )
 
     def send_feedback(self):

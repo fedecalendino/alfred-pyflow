@@ -27,11 +27,14 @@ class TestItem(unittest.TestCase):
         self.assertIsNone(item.serialized["icon"]["type"])
 
     def test_error(self):
+        def x(_):
+            1 / 0
+
         wf: Workflow = Workflow()
-        wf.run(lambda _: 1 / 0)
+        wf.run(x)
 
         item: dict = wf.serialized["items"][0]
 
-        self.assertEqual(item["title"], "Error while running workflow 'name:v0.0.0'")
-        self.assertEqual(item["subtitle"], "division by zero")
+        self.assertEqual(item["title"], "division by zero")
+        self.assertEqual(item["subtitle"], "Error while running workflow 'name:v0.0.0'")
         self.assertEqual(item["icon"]["path"], str(Icon.ALERT_STOP))

@@ -1,7 +1,7 @@
 import os
 import subprocess
+import sys
 from unittest import TestCase
-
 from pyflow.workflow import Workflow
 
 
@@ -40,3 +40,12 @@ class WorklowTestCase(TestCase):
         os.environ.setdefault("alfred_workflow_cache", self.alfred_workflow_cache)
 
         return Workflow()
+
+    def run_workflow(self, workflow: Workflow, target: callable, *args, **envs) -> dict:
+        for key, value in envs.items():
+            os.environ.setdefault(key, value)
+
+        sys.argv = [""] + list(args)
+
+        workflow.run(target)
+        return workflow.serialized

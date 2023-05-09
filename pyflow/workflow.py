@@ -81,8 +81,8 @@ class Workflow:
                 icon=Icon.ALERT_STOP,
             )
 
-    def send_feedback(self):
-        json.dump(self.serialized, sys.stdout)
+    def send_feedback(self, indent: int = 2):
+        json.dump(self.serialized, sys.stdout, indent=indent)
         sys.stdout.flush()
 
     @property

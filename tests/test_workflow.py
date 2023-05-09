@@ -19,7 +19,8 @@ class TestWorkflow(unittest.TestCase):
     def test_properties(self):
         workflow = Workflow()
 
+        self.assertTrue(workflow.debugging)
         self.assertEqual(workflow.bundleid, "com.bundle.name")
         self.assertEqual(workflow.name, "name")
         self.assertEqual(workflow.version, "0.0.0")
-        self.assertTrue(workflow.debugging)
+        self.assertEqual(workflow.cachedir, "/tmp")

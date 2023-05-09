@@ -1,13 +1,13 @@
-import os
 import json
-import sys
-from typing import Dict, List
 import logging
+import os
+import sys
 from logging import Logger, INFO, DEBUG
+from typing import Dict, List
 
 from .cache import Cache
-from .item import Item
 from .icon import Icon
+from .item import Item
 
 
 class Workflow:

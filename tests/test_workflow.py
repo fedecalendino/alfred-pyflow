@@ -1,26 +1,20 @@
-import os
-import unittest
-from unittest.mock import patch
-
-from pyflow.workflow import Workflow
+from pyflow.testing import WorklowTestCase
 
 
-ENVIRONMENT = {
-    "alfred_debug": "1",
-    "alfred_workflow_bundleid": "com.bundle.name",
-    "alfred_workflow_cache": "/tmp",
-    "alfred_workflow_name": "name",
-    "alfred_workflow_version": "0.0.0",
-}
+class TestWorkflow(WorklowTestCase):
+    @property
+    def alfred_workflow_bundleid(self):
+        return "com.bundle.test"
 
+    @property
+    def alfred_workflow_version(self):
+        return "0.0.0"
 
-@patch.dict(os.environ, ENVIRONMENT, clear=True)
-class TestWorkflow(unittest.TestCase):
     def test_properties(self):
-        workflow = Workflow()
+        workflow = self.workflow
 
         self.assertTrue(workflow.debugging)
-        self.assertEqual(workflow.bundleid, "com.bundle.name")
-        self.assertEqual(workflow.name, "name")
+        self.assertEqual(workflow.bundleid, "com.bundle.test")
+        self.assertEqual(workflow.name, "test")
         self.assertEqual(workflow.version, "0.0.0")
-        self.assertEqual(workflow.cachedir, "/tmp")
+        self.assertEqual(workflow.cachedir, "/tmp/test")

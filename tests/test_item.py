@@ -35,7 +35,7 @@ class TestItems(WorklowTestCase):
             else:
                 item.set_icon_builtin(Icon.ALERT_STOP)
 
-        workflow = self.workflow
+        workflow = self.workflow()
         feedback = self.run_workflow(workflow, aux, status_code)
 
         item = feedback["items"][0]
@@ -56,7 +56,7 @@ class TestItems(WorklowTestCase):
         def aux(_):
             1 / 0
 
-        workflow = self.workflow
+        workflow = self.workflow()
         feedback = self.run_workflow(workflow, aux)
 
         item = feedback["items"][0]

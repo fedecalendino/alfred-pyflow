@@ -5,7 +5,7 @@ documentation = "https://github.com/fedecalendino/alfred-pyflow/blob/main/README
 homepage = "https://github.com/fedecalendino/alfred-pyflow"
 license = "MIT"
 readme = "README.md"
-version = "0.4.3"
+version = "0.4.4"
 
 authors = [
   "Fede Calendino <fede@calendino.com>",

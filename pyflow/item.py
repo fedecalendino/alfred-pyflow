@@ -39,12 +39,12 @@ class Item:
         self._icon: dict = {}
         self._mods: dict = {}
 
-    def set_icon_builtin(self, icon: Icon) -> "Icon":
+    def set_icon_builtin(self, icon: Icon) -> "Item":
         return self.set_icon_file(
             path=str(icon),
         )
 
-    def set_icon_file(self, path: str) -> "Icon":
+    def set_icon_file(self, path: str) -> "Item":
         self._icon = {
             "path": path,
             "type": None,
@@ -52,7 +52,7 @@ class Item:
 
         return self
 
-    def set_icon_url(self, url: str, filename: str = None) -> "Icon":
+    def set_icon_url(self, url: str, filename: str = None) -> "Item":
         return self.set_icon_file(
             path=self.cache.download_image(
                 url=url,
@@ -60,9 +60,7 @@ class Item:
             ),
         )
 
-    def set_alt_mod(
-        self, arg: str = None, subtitle: str = None, valid: bool = True
-    ) -> "Icon":
+    def set_alt_mod(self, arg: str = None, subtitle: str = None, valid: bool = True) -> "Item":
         self._mods["alt"] = {
             "arg": arg,
             "subtitle": subtitle,
@@ -71,9 +69,7 @@ class Item:
 
         return self
 
-    def set_cmd_mod(
-        self, arg: str = None, subtitle: str = None, valid: bool = True
-    ) -> "Icon":
+    def set_cmd_mod(self, arg: str = None, subtitle: str = None, valid: bool = True) -> "Item":
         self._mods["cmd"] = {
             "arg": arg,
             "subtitle": subtitle,

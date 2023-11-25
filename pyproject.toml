@@ -5,7 +5,7 @@ documentation = "https://github.com/fedecalendino/alfred-pyflow/blob/main/README
 homepage = "https://github.com/fedecalendino/alfred-pyflow"
 license = "MIT"
 readme = "README.md"
-version = "0.4.5"
+version = "0.4.6"
 
 authors = [
   "Fede Calendino <fede@calendino.com>",
@@ -35,6 +35,9 @@ urllib3 = "1.26.6"
 black = "^23.3.0"
 coverage = "^7.2.5"
 ddt = "^1.6.0"
+
+[tool.black]
+line-length = 150
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

@@ -13,32 +13,32 @@ jobs:
     timeout-minutes: 5
 
     steps:
-      - name: Checkout code
+      - name: "GITHUB: checkout code"
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Setup Python ${{ matrix.python-version }}
+      - name: "GITHUB: setup python ${{ matrix.python-version }}"
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install Poetry
+      - name: "POETRY: install"
         uses: abatilo/actions-poetry@v2.2.0
 
-      - name: Setup environment
+      - name: "POETRY: setup environment"
         run: poetry install
 
-      - name: Run tests with Coverage
+      - name: "PYTHON: run tests"
         run: |
           poetry run coverage run --source pyflow -m unittest discover
           poetry run coverage xml -o ./coverage.xml
 
-      - name: Fix coverage xml path
+      - name: "SONARCLOUD: fix coverage xml path"
         run: |
           sed -i "s@${GITHUB_WORKSPACE}@/github/workspace/@g" ./coverage.xml
 
-      - name: SonarCloud scan
+      - name: "SONARCLOUD: scan"
         if: matrix.python-version == '3.8'
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
@@ -51,21 +51,21 @@ jobs:
     needs: test
 
     steps:
-      - name: Checkout code
+      - name: "GITHUB: checkout code"
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Setup Python
+      - name: "GITHUB: setup python"
         uses: actions/setup-python@v4
         with:
           python-version: 3.8
 
-      - name: Install Poetry
+      - name: "POETRY: install"
         uses: abatilo/actions-poetry@v2.2.0
 
-      - name: Setup environment
+      - name: "POETRY: setup environment"
         run: poetry install
 
-      - name: Build package
+      - name: "POETRY: build package"
         run: poetry build
